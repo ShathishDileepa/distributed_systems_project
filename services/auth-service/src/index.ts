@@ -1,23 +1,29 @@
-import express from "express";
+import mongoose from 'mongoose';
 
-import { signinRouter } from "./routes/signin";
-import { signoutRouter } from "./routes/signout";
-import { signupRouter } from "./routes/signup";
-import { currentUserRouter } from "./routes/current_user";
+import { app } from './app';
 
-const PORT = 4000;
+const start = async () => {
+  if (!process.env.JWT_KEY) {
+    throw new Error('JWT_KEY must be defined');
+  }
+  if (!process.env.MONGO_URI) {
+    throw new Error('MONGO_URI must be defined');
+  }
 
-const app = express();
+  try {
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+    console.log('Connected to MongoDb');
+  } catch (err) {
+    console.error(err);
+  }
 
-// middleware
-app.use(express.json()); // json parser
+  app.listen(3000, () => {
+    console.log('Listening on port 3000!!!!!!!!');
+  });
+};
 
-// route handlers (API endpoints)
-app.use(signupRouter);
-app.use(signinRouter);
-app.use(signoutRouter);
-app.use(currentUserRouter);
-
-app.listen(PORT, () => {
-  console.log(`(auth-service) Listening on port ${PORT}...`);
-});
+start();
