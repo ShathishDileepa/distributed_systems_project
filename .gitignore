@@ -1,0 +1,6 @@
+./auth/node_modules/*
+./client/node_modules/*
+./event-srv/node_modules/*
+./expiration/node_modules/*
+./orders/node_modules/*
+./payment/node_modules/*
