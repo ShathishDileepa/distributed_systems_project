@@ -105,7 +105,7 @@ Following are the core services of the project,
 
 - This is a utility function which supports Order Core service, main responsibility is to see if the events have been expiered or the tickets have been expiered.
 
-#### Events-Server Service
+#### Events Service
 
 - Responsible for retriving a specific event, Posting ans event to the server, getting all the events.
 
@@ -123,12 +123,29 @@ As the API Gateway we have used Ingress NGINX as the API Gateway service in our 
 
 ### User Interface
 
+A simple user interface is ceated using the Mainly using the NextJS. and the rest of the technologies mentioned in the Technology stack
+
 ### API Testing tools
+
+While developing Each Express Apps to check whether the relavant API Endpoints are working as they should be we used the API Testing tool **PostMan**.
 
 <hr>
 
 ## Deployement
 
+- We can deploy this on a any cloud enviorement after setting the necessary Kubernetes enviorement in those virtual machines.
+
 <hr>
 
+## Future Improvements
+
+- Since the application only support to buy one ticket at the moment, an future implementation can be to adding the functionality of buying multiple tickets at a time.
+
 ## References
+
+About [Docker](https://www.docker.com/get-started/)
+About [Kubernetes](https://kubernetes.io/docs/tasks/tools/)
+About [Skaffold](https://skaffold.dev/docs/quickstart/)
+About [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/deploy/)
+About [NextJS](https://nextjs.org/docs)
+About [NATS Streaming Server](https://github.com/nats-io/nats-streaming-server)
