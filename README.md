@@ -143,9 +143,9 @@ While developing Each Express Apps to check whether the relavant API Endpoints a
 
 ## References
 
-About [Docker](https://www.docker.com/get-started/)
-About [Kubernetes](https://kubernetes.io/docs/tasks/tools/)
-About [Skaffold](https://skaffold.dev/docs/quickstart/)
-About [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/deploy/)
-About [NextJS](https://nextjs.org/docs)
-About [NATS Streaming Server](https://github.com/nats-io/nats-streaming-server)
+* About [Docker](https://www.docker.com/get-started/)
+* About [Kubernetes](https://kubernetes.io/docs/tasks/tools/)
+* About [Skaffold](https://skaffold.dev/docs/quickstart/)
+* About [Ingress NGINX](https://kubernetes.github.io/ingress-nginx/deploy/)
+* About [NextJS](https://nextjs.org/docs)
+* About [NATS Streaming Server](https://github.com/nats-io/nats-streaming-server)
