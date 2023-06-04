@@ -119,7 +119,7 @@ Following are the core services of the project,
 
 As the API Gateway we have used Ingress NGINX as the API Gateway service in our project. And shown in the below figure is the configuration we provided for the ingress NGINX service when we initialize it as a kubernetes service.
 
-<img src="./images/api_gateway.png" style="width:550px;">
+<img src="./images/api_gateway.PNG" style="width:550px;">
 
 ### User Interface
 
