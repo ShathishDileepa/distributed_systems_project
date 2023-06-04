@@ -1,25 +1,24 @@
-import mongoose from 'mongoose';
-import request from 'supertest';
-import { OrderStatus } from '@ijeventure/common';
-import { app } from '../../app';
-import { Order } from '../../models/order';
-import { stripe } from '../../stripe';
+import mongoose from "mongoose";
+import request from "supertest";
+import { app } from "../../app";
+import { Order } from "../../models/order";
+import { stripe } from "../../stripe";
 
 // * mock stripe module using jest
-jest.mock('../../stripe');
+jest.mock("../../stripe");
 
-it('returns a 404 when purchasing an order that does not exist', async () => {
+it("returns a 404 when purchasing an order that does not exist", async () => {
   await request(app)
-    .post('/api/payments')
-    .set('Cookie', global.signin())
+    .post("/api/payments")
+    .set("Cookie", global.signin())
     .send({
-      token: 'lkoiuhc',
+      token: "lkoiuhc",
       orderId: mongoose.Types.ObjectId().toHexString(),
     })
     .expect(404);
 });
 
-it('returns a 401 when purchasing an order that doesnt belong to the user', async () => {
+it("returns a 401 when purchasing an order that doesnt belong to the user", async () => {
   const order = Order.build({
     id: mongoose.Types.ObjectId().toHexString(),
     userId: mongoose.Types.ObjectId().toHexString(),
@@ -30,40 +29,38 @@ it('returns a 401 when purchasing an order that doesnt belong to the user', asyn
   await order.save();
 
   await request(app)
-    .post('/api/payments')
-    .set('Cookie', global.signin())
+    .post("/api/payments")
+    .set("Cookie", global.signin())
     .send({
-      token: 'lkoiuhc',
+      token: "lkoiuhc",
       orderId: order.id,
     })
     .expect(401);
 });
 
-it('returns a 400 when purchasing a cancelled order', async () => {
+it("returns a 400 when purchasing a cancelled order", async () => {
+  const userId = mongoose.Types.ObjectId().toHexString();
 
-    const userId = mongoose.Types.ObjectId().toHexString();
+  const order = Order.build({
+    id: mongoose.Types.ObjectId().toHexString(),
+    userId: userId,
+    version: 0,
+    price: 20,
+    status: OrderStatus.Cancelled,
+  });
+  await order.save();
 
-    const order = Order.build({
-        id: mongoose.Types.ObjectId().toHexString(),
-        userId: userId,
-        version: 0,
-        price: 20,
-        status: OrderStatus.Cancelled,
-    });
-    await order.save();
-    
-    await request(app)
-        .post('/api/payments')
-        .set('Cookie', global.signin(userId))
-        .send({
-          token: 'lkoiuhc',
-          orderId: order.id,
-        })
-        .expect(400);
-    
+  await request(app)
+    .post("/api/payments")
+    .set("Cookie", global.signin(userId))
+    .send({
+      token: "lkoiuhc",
+      orderId: order.id,
+    })
+    .expect(400);
 });
 
-it('returns a 204 with valid inputs', async () => {
+it("returns a 204 with valid inputs", async () => {
   const userId = mongoose.Types.ObjectId().toHexString();
   const order = Order.build({
     id: mongoose.Types.ObjectId().toHexString(),
@@ -75,19 +72,17 @@ it('returns a 204 with valid inputs', async () => {
   await order.save();
 
   await request(app)
-    .post('/api/payments')
-    .set('Cookie', global.signin(userId))
+    .post("/api/payments")
+    .set("Cookie", global.signin(userId))
     .send({
       // * tok_visa token always works on test mode
-      token: 'tok_visa',
+      token: "tok_visa",
       orderId: order.id,
     })
     .expect(201);
 
   const chargeOptions = (stripe.charges.create as jest.Mock).mock.calls[0][0];
-  expect(chargeOptions.source).toEqual('tok_visa');
+  expect(chargeOptions.source).toEqual("tok_visa");
   expect(chargeOptions.amount).toEqual(20 * 100);
-  expect(chargeOptions.currency).toEqual('usd');
-  });
-      
-      
+  expect(chargeOptions.currency).toEqual("usd");
+});

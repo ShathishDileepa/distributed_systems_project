@@ -2,7 +2,6 @@ import express, { Router } from 'express';
 import { body, validationResult } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
-import { BadRequestError, validateRequest } from '@ijeventure/common';
 import { User } from '../models/user';
 
 const router: Router = express.Router();

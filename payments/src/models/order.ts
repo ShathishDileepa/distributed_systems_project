@@ -1,5 +1,4 @@
 import mongoose from "mongoose";
-import { OrderStatus } from "@ijeventure/common";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 
 export { OrderStatus };

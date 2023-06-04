@@ -1,4 +1,3 @@
-import { Listener, OrderCreatedEvent, Subjects } from "@ijeventure/common";
 import { Message } from "node-nats-streaming";
 import { Order } from "../../models/order";
 import { queueGroupName } from "./queue-group-name";

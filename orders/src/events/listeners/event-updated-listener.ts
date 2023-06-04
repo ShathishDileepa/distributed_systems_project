@@ -1,5 +1,4 @@
 import { Message } from "node-nats-streaming";
-import { Listener, Subjects, EventUpdatedEvent } from "@ijeventure/common";
 import { queueGroupName } from "./queue-group-name";
 import { Event } from "../../models/events-srv";
 

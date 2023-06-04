@@ -1,5 +1,4 @@
 import mongoose, { mongo } from "mongoose";
-import { OrderStatus } from "@ijeventure/common";
 import { updateIfCurrentPlugin } from "mongoose-update-if-current";
 import { EventDoc } from "./events-srv";
 

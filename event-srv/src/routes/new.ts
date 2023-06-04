@@ -1,7 +1,6 @@
 
 import express, { Request, Response } from "express";
 import { body } from 'express-validator';
-import { requireAuth, validateRequest } from "@ijeventure/common";
 import { Event } from "../models/event-srv";
 import { natsWrapper } from "../nats-wrapper";
 import { EventCreatedPublisher } from "../events/publishers/event-created-publisher";

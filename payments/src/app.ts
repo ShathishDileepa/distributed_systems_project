@@ -8,10 +8,6 @@ import { json } from 'body-parser';
 
 // * Used for creating cookie
 import cookieSession from 'cookie-session';
-
-
-// * Custom uploaded shared npm module
-import { errorHandler, NotFoundError, currentUser } from '@ijeventure/common';
 import { createChargeRouter } from './routes/new';
 
 

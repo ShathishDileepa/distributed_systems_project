@@ -1,8 +1,6 @@
 import express, {Request, Response} from 'express';
 import { Event } from '../models/event-srv';
 
-// * Custom NPM module
-import { NotFoundError } from "@ijeventure/common";
 
 const router = express.Router();
 

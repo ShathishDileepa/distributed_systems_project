@@ -1,5 +1,4 @@
 import express from 'express';
-import { currentUser } from '@ijeventure/common';
 
 
 const router = express.Router();

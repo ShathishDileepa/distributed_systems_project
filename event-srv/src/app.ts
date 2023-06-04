@@ -8,10 +8,6 @@ import { json } from 'body-parser';
 
 // * Used for creating cookie
 import cookieSession from 'cookie-session';
-
-
-// * Custom uploaded shared npm module
-import { errorHandler, NotFoundError, currentUser } from '@ijeventure/common';
 import { createEventRouter } from './routes/new';
 import { showEventsRouter } from './routes/show';
 import { indexEventsRouter } from './routes';
@@ -46,17 +42,6 @@ app.use(currentUser);
 app.use(createEventRouter);
 app.use(showEventsRouter);
 app.use(indexEventsRouter);
-
-// * It matches all requests which comes and will throw the NotFoundError class
-/* 
-* Here if we use async in the function then we have to use next() express
-* function as next(new NotFoundError()); else we have to add a new module in import section which is import 'express-async-eerrors'
-* to fix this break code
-
-? app.all('*', async(req, res, next) => {
-?   next(new NotFoundError());
-? });
-*/
 
 app.all('*', async() => {
   throw new NotFoundError();

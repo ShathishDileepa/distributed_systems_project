@@ -3,7 +3,6 @@ import { body } from 'express-validator';
 import jwt from 'jsonwebtoken';
 
 // * custom npm module publish publically
-import { BadRequestError, validateRequest } from '@ijeventure/common';
 import { User } from '../models/user';
 import { Password } from '../services/password';
 
